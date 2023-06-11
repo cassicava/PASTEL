@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +16,7 @@
 
   /* border: 1px solid red; */
 }
+
 /* S C R O L L B A R  */
 
 body::-webkit-scrollbar {
@@ -47,10 +49,8 @@ header {
 
   padding: 12px 0px;
 
-  background: rgb(194, 33, 33);
-  background: linear-gradient(135deg,
-      rgba(194, 33, 33, 1) 0%,
-      rgba(140, 20, 20, 1) 100%);
+  background: rgb(220, 20, 60);
+  background: linear-gradient(135deg, rgba(220, 20, 60, 1) 0%, rgba(139, 0, 0, 1) 100%);
 }
 
 h1 {
@@ -180,10 +180,8 @@ footer {
 
   padding: 12px 0px 70px 0px;
 
-  background: rgb(194, 33, 33);
-  background: linear-gradient(135deg,
-      rgba(194, 33, 33, 1) 0%,
-      rgba(140, 20, 20, 1) 100%);
+  background: rgb(220, 20, 60);
+  background: linear-gradient(135deg, rgba(220, 20, 60, 1) 0%, rgba(139, 0, 0, 1) 100%);
 }
 
 h3 {
