@@ -50,6 +50,7 @@ header {
   border-bottom: 2px solid #131313;
   background: #dc143c;
   background: linear-gradient(135deg, rgba(220, 20, 60, 1) 0%, rgba(139, 0, 0, 1) 100%);
+  padding: 10px;
 }
 
 h1 {
@@ -100,12 +101,7 @@ nav a {
   text-decoration: none;
   color: #000000;
   font-weight:bold;
-  transition: color 0.3s;
 }
-nav a:active {
-  color: #e04665; 
-}
-
 
 
 /* M A I N */
