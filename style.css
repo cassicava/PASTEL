@@ -5,6 +5,7 @@
   padding: 0;
 
   box-sizing: border-box;
+  scroll-padding: 5rem;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -46,10 +47,8 @@ body {
 header {
   width: 100%;
   height: auto;
-
-  padding: 12px 0px;
-
-  background: rgb(220, 20, 60);
+  border-bottom: 2px solid #131313;
+  background: #dc143c;
   background: linear-gradient(135deg, rgba(220, 20, 60, 1) 0%, rgba(139, 0, 0, 1) 100%);
 }
 
@@ -72,31 +71,42 @@ header p {
 nav {
   display: flex;
   position: sticky;
-  top: 1%;
-  left: 1%;
+  top: 0%;
+  left: 0%;
   align-items: center;
   justify-content: space-around;
+ 
+  /* padding: 10px; */
 
-
-  width: 98%;
+  width: 100%;
   height: auto;
-  padding: 6px 0px;
 
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(191, 191, 191, 0.5);
   box-shadow: 0 8px 16px 0 #13131378;
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
-  border: 2px solid #131313;
-  border-radius: 18px;
-
-  margin-top: 1%;
+  border-bottom: 2px solid #131313;
+  /* border-radius: 18px; */
 }
 
-nav img {
+/* nav img {
   height: 42px;
+} */
+
+nav a {
+  padding: 20px 5px;
+  text-decoration: none;
+  color: #000000;
+  font-weight:bold;
+  transition: color 0.3s;
 }
+nav a:active {
+  color: #e04665; 
+}
+
+
 
 /* M A I N */
 
@@ -170,6 +180,7 @@ h6 {
 
 .obs {
   border: none;
+  
 }
 
 /* R O D A P E */
