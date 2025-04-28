@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Roldão Pastel</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -14,35 +14,42 @@
 </header>
 
 <nav id="menu-categorias">
-  <a href="#pastel_salgado">Salgados</a>
-  <a href="#pastel_especial">Especiais</a>
-  <a href="#pastel_doce">Doces</a>
-  <a href="#bebida">Bebidas</a>
+  <a href="#pastel_salgado">Salgado</a>
+  <a href="#pastel_especial">Especial</a>
+  <a href="#pastel_doce">Doce</a>
+  <a href="#bebidas">Bebidas</a>
 </nav>
 
 <main>
   <section class="tipos">
     <h2 id="pastel_salgado">PASTÉIS SALGADOS</h2>
-    <div id="salgados"></div>
+    <div id="lista-produtos-salgados"></div>
+  </section>
 
+  <section class="tipos">
     <h2 id="pastel_especial">PASTÉIS ESPECIAIS</h2>
-    <div id="especiais"></div>
+    <div id="lista-produtos-especiais"></div>
+  </section>
 
+  <section class="tipos">
     <h2 id="pastel_doce">PASTÉIS DOCES</h2>
-    <div id="doces"></div>
+    <div id="lista-produtos-doces"></div>
+  </section>
 
-    <h2 id="bebida">BEBIDAS</h2>
-    <div id="bebidas"></div>
+  <section class="tipos">
+    <h2 id="bebidas">BEBIDAS</h2>
+    <div id="lista-produtos-bebidas"></div>
   </section>
 </main>
 
 <footer>
   <div class="carrinho-info">
     <span>Total: R$ <span id="valor-total">0,00</span></span>
-    <button id="btn-finalizar">Ver Carrinho</button>
+    <button id="btn-finalizar">Ver Carrinho (<span id="quantidade-carrinho">0</span>)</button>
   </div>
 </footer>
 
+<!-- POPUP -->
 <div id="popup-carrinho">
   <div class="popup-conteudo">
     <h2>Seu Pedido</h2>
@@ -56,59 +63,69 @@
 </div>
 
 <script>
-const catalogo = {
+// Produtos
+const produtos = {
   salgados: [
-    { nome: 'Frango', preco: 13, descricao: 'Frango desfiado com temperos especiais.' },
-    { nome: 'Carne e Queijo', preco: 13, descricao: 'Carne moída com queijo derretido.' },
-    { nome: 'Carne e Catupiry', preco: 13 },
-    { nome: 'Frango e Queijo', preco: 14 },
-    { nome: 'Frango e Catupiry', preco: 14 },
-    { nome: 'Frango c/ Palmito', preco: 16 },
-    { nome: 'Bauru', preco: 13, descricao: 'Presunto, queijo e tomate.' },
-    { nome: 'Pizza', preco: 13, descricao: 'Queijo, tomate e orégano.' },
-    { nome: 'Queijo', preco: 12 },
-    { nome: 'Queijo e Catupiry', preco: 13 },
-    { nome: 'Palmito', preco: 15 },
-    { nome: 'Palmito com Queijo', preco: 16 },
-    { nome: 'Palmito com Catupiry', preco: 16 },
-    { nome: 'Cigarrete', preco: 9 },
-    { nome: 'Baianhio', preco: 12, descricao: 'Calabresa apimentada, cebola e tomate.' },
-    { nome: 'Baianhio Queijo', preco: 13, descricao: 'Calabresa apimentada, cebola, tomate e queijo.' },
-    { nome: 'Baianhio Catupiry', preco: 13, descricao: 'Calabresa apimentada, cebola, tomate e catupiry.' },
-    { nome: 'Calabresa', preco: 12, descricao: 'Calabresa, cebola, tomate e orégano.' },
-    { nome: 'Calabresa Queijo', preco: 13, descricao: 'Calabresa, cebola, tomate, orégano e queijo.' },
-    { nome: 'Calabresa Catupiry', preco: 13, descricao: 'Calabresa, cebola, tomate, orégano e catupiry.' },
-    { nome: 'Creme de Milho', preco: 12 },
-    { nome: 'Co-Có-Ri-Có', preco: 16, descricao: 'Creme de milho, frango e ovo cozido.' },
-    { nome: 'Napolitano', preco: 14, descricao: 'Queijo, bacon e alho.' },
-    { nome: 'Hambúrguer', preco: 14, descricao: 'Hambúrguer, queijo e bacon.' },
-    { nome: 'Quatro Queijo', preco: 16, descricao: 'Mussarela, queijo prato, provolone e catupiry.' },
-    { nome: 'Português', preco: 16, descricao: 'Palmito, ervilha, milho, ovo, presunto e queijo, cebola, tomate e azeitona.' }
+    {nome: "Frango", preco: 13},
+    {nome: "Carne e Queijo", preco: 13},
+    {nome: "Carne e Catupiry", preco: 13},
+    {nome: "Frango e Queijo", preco: 14},
+    {nome: "Frango e Catupiry", preco: 14},
+    {nome: "Frango c/ Palmito", preco: 16},
+    {nome: "Bauru", preco: 13},
+    {nome: "Pizza", preco: 13},
+    {nome: "Queijo", preco: 12},
+    {nome: "Queijo e Catupiry", preco: 13},
+    {nome: "Palmito", preco: 15},
+    {nome: "Palmito com Queijo", preco: 16},
+    {nome: "Palmito com Catupiry", preco: 16},
+    {nome: "Cigarrete", preco: 9},
+    {nome: "Baianhio", preco: 12},
+    {nome: "Baianhio Queijo", preco: 13},
+    {nome: "Baianhio Catupiry", preco: 13},
+    {nome: "Calabresa", preco: 12},
+    {nome: "Calabresa Queijo", preco: 13},
+    {nome: "Calabresa Catupiry", preco: 13},
+    {nome: "Creme de Milho", preco: 12},
+    {nome: "Co-Có-Ri-Có", preco: 16},
+    {nome: "Napolitano", preco: 14},
+    {nome: "Hambúrguer", preco: 14},
+    {nome: "Quatro Queijo", preco: 16},
+    {nome: "Português", preco: 16}
   ],
   especiais: [
-    { nome: 'Especial da Casa', preco: 18, descricao: 'Pastel especial recheado.' },
-    { nome: 'Mega Frango', preco: 20, descricao: 'Frango, catupiry, milho e bacon.' }
+    {nome: "Especial de Carne", preco: 35},
+    {nome: "Especial de Frango", preco: 35},
+    {nome: "Especial de Palmito", preco: 35},
+    {nome: "Especial de Português", preco: 35},
+    {nome: "Especial de Calabresa", preco: 35},
+    {nome: "Especial de Baianho", preco: 35},
+    {nome: "Especial de Co-Có-Ri-Có", preco: 35},
+    {nome: "Especial de Carne Seca", preco: 40}
   ],
   doces: [
-    { nome: 'Romeu e Julieta', preco: 12, descricao: 'Goiabada com queijo.' },
-    { nome: 'Chocolate com Morango', preco: 14 }
+    {nome: "Chocolate", preco: 12},
+    {nome: "Romeu e Julieta", preco: 12},
+    {nome: "Banana com Canela", preco: 12}
   ],
   bebidas: [
-    { nome: 'Refrigerante Lata', preco: 6 },
-    { nome: 'Água Mineral', preco: 3 }
+    {nome: "Refrigerante Lata", preco: 6},
+    {nome: "Água Mineral", preco: 4},
+    {nome: "Suco Natural", preco: 7}
   ]
 };
 
-const carrinho = [];
+function criarProduto(produto, container) {
+  const div = document.createElement("div");
+  div.classList.add("produtos");
+  div.setAttribute("data-nome", produto.nome);
+  div.setAttribute("data-preco", produto.preco);
 
-function criarProduto(item) {
-  const div = document.createElement('div');
-  div.className = 'produtos';
   div.innerHTML = `
-    <div class="info-produto">
-      <h4>${item.nome}</h4>
-      <div class="preco-controles">
-        <h6>R$ ${item.preco.toFixed(2)}</h6>
+    <div class="topo-produto">
+      <h4>${produto.nome}</h4>
+      <div class="preco-controle">
+        <h6>R$ ${produto.preco.toFixed(2)}</h6>
         <div class="controle-quantidade">
           <button class="diminuir">-</button>
           <span class="quantidade">0</span>
@@ -116,98 +133,147 @@ function criarProduto(item) {
         </div>
       </div>
     </div>
-    ${item.descricao ? `<p class="descricao">${item.descricao}</p>` : ''}
   `;
 
-  const aumentar = div.querySelector('.aumentar');
-  const diminuir = div.querySelector('.diminuir');
-  const quantidade = div.querySelector('.quantidade');
+  container.appendChild(div);
+}
 
-  aumentar.addEventListener('click', () => {
-    adicionarAoCarrinho(item);
-    quantidade.innerText = contarItem(item.nome);
+// Listar produtos
+Object.keys(produtos).forEach(categoria => {
+  const container = document.getElementById(`lista-produtos-${categoria}`);
+  produtos[categoria].forEach(produto => criarProduto(produto, container));
+});
+
+// Carrinho
+const produtosElementos = document.querySelectorAll(".produtos");
+const valorTotal = document.getElementById("valor-total");
+const popup = document.getElementById("popup-carrinho");
+const listaCarrinho = document.getElementById("lista-carrinho");
+const valorTotalPopup = document.getElementById("valor-total-popup");
+const btnFinalizar = document.getElementById("btn-finalizar");
+const btnFechar = document.getElementById("btn-fechar");
+const btnEnviar = document.getElementById("btn-enviar");
+const quantidadeCarrinho = document.getElementById("quantidade-carrinho");
+
+let carrinho = [];
+
+produtosElementos.forEach(produto => {
+  const nome = produto.getAttribute("data-nome");
+  const preco = parseFloat(produto.getAttribute("data-preco"));
+  const aumentarBtn = produto.querySelector(".aumentar");
+  const diminuirBtn = produto.querySelector(".diminuir");
+  const quantidadeSpan = produto.querySelector(".quantidade");
+
+  aumentarBtn.addEventListener("click", () => {
+    adicionarProduto(nome, preco);
+    quantidadeSpan.textContent = pegarQuantidade(nome);
+    atualizarCarrinho();
   });
 
-  diminuir.addEventListener('click', () => {
-    removerDoCarrinho(item);
-    quantidade.innerText = contarItem(item.nome);
+  diminuirBtn.addEventListener("click", () => {
+    removerProduto(nome);
+    quantidadeSpan.textContent = pegarQuantidade(nome);
+    atualizarCarrinho();
   });
+});
 
-  return div;
+btnFinalizar.addEventListener("click", () => {
+  popup.classList.add("show");
+});
+
+btnFechar.addEventListener("click", () => {
+  popup.classList.remove("show");
+});
+
+btnEnviar.addEventListener("click", () => {
+  const mensagem = carrinho.map(p => `${p.quantidade}x ${p.nome}`).join('\n') +
+    `\n\nTotal: R$ ${calcularTotal().toFixed(2)}`;
+  const url = `https://wa.me/5516988472113?text=${encodeURIComponent(mensagem)}`;
+  window.open(url, '_blank');
+});
+
+function adicionarProduto(nome, preco) {
+  const item = carrinho.find(p => p.nome === nome);
+  if (item) item.quantidade++;
+  else carrinho.push({ nome, preco, quantidade: 1 });
 }
 
-function adicionarAoCarrinho(produto) {
-  const existente = carrinho.find(p => p.nome === produto.nome);
-  if (existente) {
-    existente.quantidade++;
-  } else {
-    carrinho.push({ ...produto, quantidade: 1 });
+function removerProduto(nome) {
+  const item = carrinho.find(p => p.nome === nome);
+  if (item) {
+    item.quantidade--;
+    if (item.quantidade <= 0) carrinho = carrinho.filter(p => p.nome !== nome);
   }
-  atualizarTotal();
 }
 
-function removerDoCarrinho(produto) {
-  const existente = carrinho.find(p => p.nome === produto.nome);
-  if (existente) {
-    existente.quantidade--;
-    if (existente.quantidade <= 0) {
-      const index = carrinho.indexOf(existente);
-      carrinho.splice(index, 1);
-    }
-  }
-  atualizarTotal();
-}
-
-function contarItem(nome) {
+function pegarQuantidade(nome) {
   const item = carrinho.find(p => p.nome === nome);
   return item ? item.quantidade : 0;
 }
 
-function atualizarTotal() {
-  const total = carrinho.reduce((soma, p) => soma + (p.preco * p.quantidade), 0);
-  document.getElementById('valor-total').innerText = total.toFixed(2);
-  document.getElementById('valor-total-popup').innerText = `Total: R$ ${total.toFixed(2)}`;
+function atualizarCarrinho() {
+  valorTotal.innerText = calcularTotal().toFixed(2);
+  valorTotalPopup.innerText = `Total: R$ ${calcularTotal().toFixed(2)}`;
+
+  // Atualizar quantidade de itens
+  const quantidadeTotal = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
+  quantidadeCarrinho.textContent = quantidadeTotal;
 }
 
-function carregarProdutos() {
-  Object.keys(catalogo).forEach(categoria => {
-    const container = document.getElementById(categoria);
-    catalogo[categoria].forEach(produto => {
-      container.appendChild(criarProduto(produto));
-    });
-  });
+function calcularTotal() {
+  return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
 }
 
-carregarProdutos();
+function mostrarCarrinho() {
+  listaCarrinho.innerHTML = "";
 
-const btnFinalizar = document.getElementById('btn-finalizar');
-const popup = document.getElementById('popup-carrinho');
-const btnFechar = document.getElementById('btn-fechar');
-const listaCarrinho = document.getElementById('lista-carrinho');
-const btnEnviar = document.getElementById('btn-enviar');
-
-btnFinalizar.addEventListener('click', () => {
-  listaCarrinho.innerHTML = '';
-  carrinho.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'item-carrinho';
+  carrinho.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.classList.add("item-carrinho");
     div.innerHTML = `
       <span>${item.nome} - R$${item.preco.toFixed(2)}</span>
-      <span>x${item.quantidade}</span>
+      <div class="controle-quantidade">
+        <button onclick="alterarQuantidade(${index}, -1)" class="diminuir">-</button>
+        <span>${item.quantidade}</span>
+        <button onclick="alterarQuantidade(${index}, 1)" class="aumentar">+</button>
+      </div>
     `;
     listaCarrinho.appendChild(div);
   });
-  popup.style.display = 'flex';
-});
+}
 
-btnFechar.addEventListener('click', () => {
-  popup.style.display = 'none';
-});
+// Alterar quantidade no popup
+function alterarQuantidade(index, delta) {
+  carrinho[index].quantidade += delta;
+  if (carrinho[index].quantidade <= 0) carrinho.splice(index, 1);
+  atualizarCarrinho();
+  mostrarCarrinho();
 
-btnEnviar.addEventListener('click', () => {
-  const mensagem = carrinho.map(p => `${p.quantidade}x ${p.nome}`).join('\n') + `\nTotal: R$ ${carrinho.reduce((s, p) => s + p.preco * p.quantidade, 0).toFixed(2)}`;
-  const url = `https://wa.me/5599999999999?text=${encodeURIComponent(mensagem)}`;
-  window.open(url, '_blank');
+  document.querySelectorAll(".produtos").forEach(produto => {
+    const nome = produto.getAttribute("data-nome");
+    const quantidadeSpan = produto.querySelector(".quantidade");
+    quantidadeSpan.textContent = pegarQuantidade(nome);
+  });
+}
+
+// Detectar seção ativa e destacar no menu
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('main section');
+  let currentSection = '';
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (scrollY >= sectionTop) {
+      currentSection = section.getAttribute('id');
+    }
+  });
+
+  document.querySelectorAll('nav a').forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + currentSection) {
+      a.classList.add('active');
+    }
+  });
 });
 </script>
 
