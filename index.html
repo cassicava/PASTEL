@@ -178,6 +178,7 @@ produtosElementos.forEach(produto => {
 });
 
 btnFinalizar.addEventListener("click", () => {
+  mostrarCarrinho(); // <- Isso que estava faltando!
   popup.classList.add("show");
 });
 
