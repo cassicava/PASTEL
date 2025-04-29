@@ -178,10 +178,10 @@ produtosElementos.forEach(produto => {
 });
 
 btnFinalizar.addEventListener("click", () => {
-  mostrarCarrinho(); // <- Isso que estava faltando!
+  mostrarCarrinho(); // <-- monta a lista de produtos selecionados
   popup.classList.add("show");
 });
-
+  
 btnFechar.addEventListener("click", () => {
   popup.classList.remove("show");
 });
