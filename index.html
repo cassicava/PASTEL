@@ -178,10 +178,9 @@ produtosElementos.forEach(produto => {
 });
 
 btnFinalizar.addEventListener("click", () => {
-  mostrarCarrinho(); // <-- monta a lista de produtos selecionados
-  popup.classList.add("show");
+  mostrarCarrinho();
 });
-  
+
 btnFechar.addEventListener("click", () => {
   popup.classList.remove("show");
 });
@@ -215,8 +214,6 @@ function pegarQuantidade(nome) {
 function atualizarCarrinho() {
   valorTotal.innerText = calcularTotal().toFixed(2);
   valorTotalPopup.innerText = `Total: R$ ${calcularTotal().toFixed(2)}`;
-
-  // Atualizar quantidade de itens
   const quantidadeTotal = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
   quantidadeCarrinho.textContent = quantidadeTotal;
 }
@@ -228,36 +225,28 @@ function calcularTotal() {
 function mostrarCarrinho() {
   listaCarrinho.innerHTML = "";
 
-  carrinho.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.classList.add("item-carrinho");
-    div.innerHTML = `
-      <span>${item.nome} - R$${item.preco.toFixed(2)}</span>
-      <div class="controle-quantidade">
-        <button onclick="alterarQuantidade(${index}, -1)" class="diminuir">-</button>
-        <span>${item.quantidade}</span>
-        <button onclick="alterarQuantidade(${index}, 1)" class="aumentar">+</button>
-      </div>
-    `;
-    listaCarrinho.appendChild(div);
-  });
+  if (carrinho.length === 0) {
+    listaCarrinho.innerHTML = `<p class="carrinho-vazio">Seu carrinho está vazio.</p>`;
+  } else {
+    carrinho.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.classList.add("item-carrinho", "fade-in");
+      div.innerHTML = `
+        <span>${item.nome} - R$${item.preco.toFixed(2)}</span>
+        <div class="controle-quantidade">
+          <button onclick="alterarQuantidade(${index}, -1)" class="diminuir">-</button>
+          <span>${item.quantidade}</span>
+          <button onclick="alterarQuantidade(${index}, 1)" class="aumentar">+</button>
+        </div>
+      `;
+      listaCarrinho.appendChild(div);
+    });
+  }
+
+  popup.classList.add("show");
 }
 
-// Alterar quantidade no popup
-function alterarQuantidade(index, delta) {
-  carrinho[index].quantidade += delta;
-  if (carrinho[index].quantidade <= 0) carrinho.splice(index, 1);
-  atualizarCarrinho();
-  mostrarCarrinho();
-
-  document.querySelectorAll(".produtos").forEach(produto => {
-    const nome = produto.getAttribute("data-nome");
-    const quantidadeSpan = produto.querySelector(".quantidade");
-    quantidadeSpan.textContent = pegarQuantidade(nome);
-  });
-}
-
-// Detectar seção ativa e destacar no menu
+// Detectar seção ativa no menu
 window.addEventListener('scroll', () => {
   const sections = document.querySelectorAll('main section');
   let currentSection = '';
