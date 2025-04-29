@@ -66,56 +66,55 @@
 // Produtos cadastrados
 const produtos = {
   salgados: [
-    {nome: "Frango", preco: 13},
-    {nome: "Carne e Queijo", preco: 13},
-    {nome: "Carne e Catupiry", preco: 13},
-    {nome: "Frango e Queijo", preco: 14},
-    {nome: "Frango e Catupiry", preco: 14},
-    {nome: "Frango c/ Palmito", preco: 16},
-    {nome: "Bauru", preco: 13},
-    {nome: "Pizza", preco: 13},
-    {nome: "Queijo", preco: 12},
-    {nome: "Queijo e Catupiry", preco: 13},
-    {nome: "Palmito", preco: 15},
-    {nome: "Palmito com Queijo", preco: 16},
-    {nome: "Palmito com Catupiry", preco: 16},
-    {nome: "Cigarrete", preco: 9},
-    {nome: "Baianhio", preco: 12},
-    {nome: "Baianhio Queijo", preco: 13},
-    {nome: "Baianhio Catupiry", preco: 13},
-    {nome: "Calabresa", preco: 12},
-    {nome: "Calabresa Queijo", preco: 13},
-    {nome: "Calabresa Catupiry", preco: 13},
-    {nome: "Creme de Milho", preco: 12},
-    {nome: "Co-Có-Ri-Có", preco: 16},
-    {nome: "Napolitano", preco: 14},
-    {nome: "Hambúrguer", preco: 14},
-    {nome: "Quatro Queijo", preco: 16},
-    {nome: "Português", preco: 16}
+    { nome: "Frango", preco: 13 },
+    { nome: "Carne e Queijo", preco: 13 },
+    { nome: "Carne e Catupiry", preco: 13 },
+    { nome: "Frango e Queijo", preco: 14 },
+    { nome: "Frango e Catupiry", preco: 14 },
+    { nome: "Frango c/ Palmito", preco: 16 },
+    { nome: "Bauru", preco: 13 },
+    { nome: "Pizza", preco: 13 },
+    { nome: "Queijo", preco: 12 },
+    { nome: "Queijo e Catupiry", preco: 13 },
+    { nome: "Palmito", preco: 15 },
+    { nome: "Palmito com Queijo", preco: 16 },
+    { nome: "Palmito com Catupiry", preco: 16 },
+    { nome: "Cigarrete", preco: 9 },
+    { nome: "Baianhio", preco: 12 },
+    { nome: "Baianhio Queijo", preco: 13 },
+    { nome: "Baianhio Catupiry", preco: 13 },
+    { nome: "Calabresa", preco: 12 },
+    { nome: "Calabresa Queijo", preco: 13 },
+    { nome: "Calabresa Catupiry", preco: 13 },
+    { nome: "Creme de Milho", preco: 12 },
+    { nome: "Co-Có-Ri-Có", preco: 16 },
+    { nome: "Napolitano", preco: 14 },
+    { nome: "Hambúrguer", preco: 14 },
+    { nome: "Quatro Queijo", preco: 16 },
+    { nome: "Português", preco: 16 }
   ],
   especiais: [
-    {nome: "Especial de Carne", preco: 35},
-    {nome: "Especial de Frango", preco: 35},
-    {nome: "Especial de Palmito", preco: 35},
-    {nome: "Especial de Português", preco: 35},
-    {nome: "Especial de Calabresa", preco: 35},
-    {nome: "Especial de Baianho", preco: 35},
-    {nome: "Especial de Co-Có-Ri-Có", preco: 35},
-    {nome: "Especial de Carne Seca", preco: 40}
+    { nome: "Especial de Carne", preco: 35 },
+    { nome: "Especial de Frango", preco: 35 },
+    { nome: "Especial de Palmito", preco: 35 },
+    { nome: "Especial de Português", preco: 35 },
+    { nome: "Especial de Calabresa", preco: 35 },
+    { nome: "Especial de Baianho", preco: 35 },
+    { nome: "Especial de Co-Có-Ri-Có", preco: 35 },
+    { nome: "Especial de Carne Seca", preco: 40 }
   ],
   doces: [
-    {nome: "Chocolate", preco: 12},
-    {nome: "Romeu e Julieta", preco: 12},
-    {nome: "Banana com Canela", preco: 12}
+    { nome: "Chocolate", preco: 12 },
+    { nome: "Romeu e Julieta", preco: 12 },
+    { nome: "Banana com Canela", preco: 12 }
   ],
   bebidas: [
-    {nome: "Refrigerante Lata", preco: 6},
-    {nome: "Água Mineral", preco: 4},
-    {nome: "Suco Natural", preco: 7}
+    { nome: "Refrigerante Lata", preco: 6 },
+    { nome: "Água Mineral", preco: 4 },
+    { nome: "Suco Natural", preco: 7 }
   ]
 };
 
-// Elementos
 const listaCarrinho = document.getElementById('lista-carrinho');
 const valorTotal = document.getElementById('valor-total');
 const quantidadeCarrinho = document.getElementById('quantidade-carrinho');
@@ -127,7 +126,11 @@ const btnEnviar = document.getElementById('btn-enviar');
 
 let carrinho = [];
 
-// Funções
+function pegarQuantidade(nome) {
+  const item = carrinho.find(p => p.nome === nome);
+  return item ? item.quantidade : 0;
+}
+
 function criarProduto(produto, container) {
   const div = document.createElement('div');
   div.classList.add('produtos');
@@ -167,17 +170,6 @@ function criarProduto(produto, container) {
   });
 }
 
-function atualizarCarrinho() {
-  valorTotal.innerText = calcularTotal().toFixed(2);
-  valorTotalPopup.innerText = `Total: R$ ${calcularTotal().toFixed(2)}`;
-  const totalItens = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
-  quantidadeCarrinho.innerText = totalItens;
-}
-
-function calcularTotal() {
-  return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
-}
-
 function adicionarProduto(nome, preco) {
   const existente = carrinho.find(item => item.nome === nome);
   if (existente) existente.quantidade++;
@@ -190,6 +182,17 @@ function removerProduto(nome) {
     existente.quantidade--;
     if (existente.quantidade <= 0) carrinho = carrinho.filter(item => item.nome !== nome);
   }
+}
+
+function atualizarCarrinho() {
+  valorTotal.innerText = calcularTotal().toFixed(2);
+  valorTotalPopup.innerText = `Total: R$ ${calcularTotal().toFixed(2)}`;
+  const totalItens = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
+  quantidadeCarrinho.innerText = totalItens;
+}
+
+function calcularTotal() {
+  return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0);
 }
 
 function mostrarCarrinho() {
@@ -225,7 +228,6 @@ function alterarQuantidade(index, delta) {
   atualizarCarrinho();
 }
 
-// Eventos
 btnFinalizar.addEventListener('click', () => {
   mostrarCarrinho();
 });
@@ -241,7 +243,6 @@ btnEnviar.addEventListener('click', () => {
   window.open(url, '_blank');
 });
 
-// Carregar produtos na tela
 Object.keys(produtos).forEach(categoria => {
   const container = document.getElementById(`lista-produtos-${categoria}`);
   produtos[categoria].forEach(produto => criarProduto(produto, container));
