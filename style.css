@@ -181,7 +181,7 @@ footer button {
 
 .popup-conteudo {
   background: white;
-  border: 3px solid black; /* Borda preta no popup */
+  border: 1px solid black; /* Borda preta no popup */
   padding: 20px;
   border-radius: 25px;
   width: 90%;
