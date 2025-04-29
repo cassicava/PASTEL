@@ -6,7 +6,7 @@
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
   transition: 0.3s ease;
-  scroll-behavior: smooth; /* Scroll suave no site */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,13 +23,12 @@ header {
   text-align: center;
 }
 
-/* NAV - menu superior */
+/* NAV */
 nav {
   position: sticky;
   top: 0;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
-  color: black;
   display: flex;
   justify-content: center;
   padding: 10px;
@@ -79,7 +78,7 @@ section.tipos h2 {
 
 /* PRODUTOS */
 .produtos {
-  background: #fafafa; /* Cinza mais branco */
+  background: #fafafa;
   margin: 10px 0;
   padding: 10px;
   border-radius: 8px;
@@ -103,8 +102,8 @@ section.tipos h2 {
 }
 
 .preco-controle h6 {
-  font-size: 0.8em; /* Fonte menor */
-  font-weight: normal; /* Sem negrito */
+  font-size: 0.8em;
+  font-weight: normal;
 }
 
 .controle-quantidade {
@@ -182,6 +181,7 @@ footer button {
 
 .popup-conteudo {
   background: white;
+  border: 3px solid black; /* Borda preta no popup */
   padding: 20px;
   border-radius: 10px;
   width: 90%;
@@ -228,7 +228,7 @@ footer button {
 }
 
 #btn-enviar {
-  background-color: #25D366; /* Verde WhatsApp */
+  background-color: #25D366;
   color: white;
 }
 
@@ -254,7 +254,7 @@ footer button {
   }
 }
 
-/* Estilo para mensagem de carrinho vazio */
+/* Estilo para carrinho vazio */
 .carrinho-vazio {
   text-align: center;
   font-size: 1.2em;
