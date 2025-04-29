@@ -138,13 +138,11 @@ function criarProduto(produto, container) {
   container.appendChild(div);
 }
 
-// Listar produtos
 Object.keys(produtos).forEach(categoria => {
   const container = document.getElementById(`lista-produtos-${categoria}`);
   produtos[categoria].forEach(produto => criarProduto(produto, container));
 });
 
-// Carrinho
 const produtosElementos = document.querySelectorAll(".produtos");
 const valorTotal = document.getElementById("valor-total");
 const popup = document.getElementById("popup-carrinho");
@@ -243,10 +241,10 @@ function mostrarCarrinho() {
     });
   }
 
+  atualizarCarrinho();
   popup.classList.add("show");
 }
 
-// Detectar seção ativa no menu
 window.addEventListener('scroll', () => {
   const sections = document.querySelectorAll('main section');
   let currentSection = '';
