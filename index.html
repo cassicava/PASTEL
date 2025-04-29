@@ -63,7 +63,6 @@
 </div>
 
 <script>
-// Produtos cadastrados
 const produtos = {
   salgados: [
     { nome: "Frango", preco: 13 },
@@ -129,6 +128,15 @@ let carrinho = [];
 function pegarQuantidade(nome) {
   const item = carrinho.find(p => p.nome === nome);
   return item ? item.quantidade : 0;
+}
+
+function atualizarQuantidadeProdutosNaTela() {
+  document.querySelectorAll('.produtos').forEach(div => {
+    const nome = div.getAttribute('data-nome');
+    const quantidade = pegarQuantidade(nome);
+    const span = div.querySelector('.quantidade');
+    if (span) span.textContent = quantidade;
+  });
 }
 
 function criarProduto(produto, container) {
@@ -226,6 +234,7 @@ function alterarQuantidade(index, delta) {
   }
   mostrarCarrinho();
   atualizarCarrinho();
+  atualizarQuantidadeProdutosNaTela();
 }
 
 btnFinalizar.addEventListener('click', () => {
@@ -247,8 +256,6 @@ Object.keys(produtos).forEach(categoria => {
   const container = document.getElementById(`lista-produtos-${categoria}`);
   produtos[categoria].forEach(produto => criarProduto(produto, container));
 });
-
 </script>
-
 </body>
 </html>
