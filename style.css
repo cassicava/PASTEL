@@ -151,10 +151,11 @@ footer .carrinho-info {
 footer button {
   background: transparent;
   color: black;
-  border: 2px solid black;
+  border: 15px solid black;
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: bold;
+   font-size: 1.2em;
 }
 
 /* POPUP */
@@ -215,7 +216,7 @@ footer button {
 
 .popup-buttons button {
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 15px;
   border: none;
   font-size: 1em;
   font-weight: bold;
@@ -266,5 +267,5 @@ footer button {
   text-align: center;
   font-size: 1.2em;
   color: gray;
-  margin-top: 20px;
+  margin-top: 25px;
 }
