@@ -272,7 +272,7 @@ btnFechar.addEventListener('click', () => {
 btnEnviar.addEventListener('click', () => {
   const mensagem = carrinho.map(p => `${p.quantidade}x ${p.nome}`).join('\n') +
     `\n\nTotal: R$ ${calcularTotal().toFixed(2)}`;
-  const url = `https://wa.me/551698847211?text=${encodeURIComponent(mensagem)}`;
+  const url = `https://wa.me/5516997110599?text=${encodeURIComponent(mensagem)}`;
   window.open(url, '_blank');
 });
 
