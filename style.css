@@ -269,3 +269,23 @@ footer button {
   color: gray;
   margin-top: 25px;
 }
+
+
+.autor {
+  text-align: center;
+  padding: 15px;
+  background-color: #f8f8f8;
+  font-size: 0.9em;
+  color: #333;
+  border-top: 1px solid #ccc;
+}
+
+.autor a {
+  color: #128C7E;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.autor a:hover {
+  text-decoration: underline;
+}
