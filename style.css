@@ -16,18 +16,14 @@ body {
   min-height: 100vh;
 }
 
-header .logo {
-  font-family: "Lobster", cursive;
-  font-size: 2.8em;
-  background: linear-gradient(135deg, #FF6600, #FF9900);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  text-shadow: -0.5px -0.5px 0 #000,
-               0.5px -0.5px 0 #000,
-              -0.5px  0.5px 0 #000,
-               0.5px  0.5px 0 #000;
+
+header {
+  background: linear-gradient(135deg, crimson, darkred);
+  color: white;
+  padding: 10px;
+  text-align: center;
 }
+
 
 /* NAV */
 nav {
